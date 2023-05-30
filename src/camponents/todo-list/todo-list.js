@@ -1,16 +1,22 @@
-import React from 'react';
+import React, { Component } from 'react';
 
 import {TodoListItem} from '../todo-list-item/todo-list-item';
 import './todo-list.css';
-
-const TodoList = ({ todos }) => {
-
+class TodoList extends Component  {
+render(){
+  const {todos} = this.props
   const elements = todos.map((item) => {
     const { id, ...itemProps } = item;
 
     return (
       <li key={id} className="list-group-item">
-        <TodoListItem {...itemProps } />
+        <TodoListItem 
+        {...itemProps }
+      onDelete =  {() => {
+      console.log('delete')
+        }}
+        />
+       
       </li>
     );
   });
@@ -20,6 +26,10 @@ const TodoList = ({ todos }) => {
       { elements }
     </ul>
   );
-};
+
+}
+
+}
+
 
 export { TodoList};
